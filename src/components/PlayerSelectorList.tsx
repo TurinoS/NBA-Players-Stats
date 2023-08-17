@@ -15,6 +15,9 @@ export default function PlayerSelectorList({
         Select a player to see their stats
       </h2>
       <PlayerSelectorCard color1={color1} color2={color2} />
+      <div className="p-3 border-2 border-solid border-[var(--second)] rounded-md cursor-pointer transition duration-350 hover:border-[var(--third)] hover:text-[var(--third)]">
+        Clear Search
+      </div>
     </section>
   );
 }
