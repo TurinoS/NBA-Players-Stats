@@ -2,7 +2,7 @@
 - [x] implementar Header com nome, barra de pesquisa e link para a API
 - [x] implementar Footer
 - [x] criar primeira seção onde se vê os jogadores pesquisados (cards genéricos)
-- [ ] criar primeira seção onde se vê os jogadores selecionados (cards genéricos)
+- [x] criar primeira seção onde se vê os jogadores selecionados (cards genéricos)
 - [ ] fazer o fetch com a API e linkar no input
 - [ ] linkar a api na prmeira seção
 - [ ] criar tabela para mostrar médias dos jogadores nas temporadas selecionadas

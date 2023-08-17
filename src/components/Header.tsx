@@ -14,7 +14,9 @@ export default function Header() {
           id="search"
           placeholder="Enter a player name"
         />
-        <button className="px-6 py-4 bg-[var(--bg)] rounded-tr-md rounded-br-md transition duration-300 hover:text-[var(--first)] hover:brightness-125">Search</button>
+        <button className="px-6 py-4 bg-[var(--bg)] rounded-tr-md rounded-br-md transition duration-300 hover:text-[var(--first)] hover:brightness-125">
+          Search
+        </button>
       </div>
       <Link href="https://app.balldontlie.io/" className="underline">
         BallDontLie API

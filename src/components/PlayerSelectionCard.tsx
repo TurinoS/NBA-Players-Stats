@@ -5,7 +5,7 @@ interface PlayersSectionProps {
   color2: string;
 }
 
-export default function PlayerSelectorCard({
+export default function PlayerSelectionCard({
   color1,
   color2,
 }: PlayersSectionProps) {
@@ -25,7 +25,7 @@ export default function PlayerSelectorCard({
           )} 50%, ${shade(0.5, color2)} 50%)`,
         }}
       >
-        Lebron James
+        LeBron James
       </p>
     </div>
   );
