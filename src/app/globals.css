@@ -7,11 +7,37 @@
   --first: #0D7377;
   --second: #F8F3D4;
   --third: #f62a2a;
+  --bg-fade2: rgba(13, 115, 119, 0.8);
+  --bg-fade3: rgba(13, 115, 119, 0.6);
+  --bg-fade4: rgba(13, 115, 119, 0.4);
+  --bg-fade5: rgba(13, 115, 119, 0.2);
+  --bg-fade6: rgba(13, 115, 119, 0);
+}
+
+main {
+  color: var(--second);
+  background: 
+    radial-gradient(circle at top right, 
+      var(--first) 0%, var(--first) 6%, 
+      var(--bg-fade2) 6%, var(--bg-fade2) 12%, 
+      var(--bg-fade3) 12%, var(--bg-fade3) 18%, 
+      var(--bg-fade4) 18%, var(--bg-fade4) 24%, 
+      var(--bg-fade5) 24%, var(--bg-fade5) 30%,
+      var(--bg-fade6) 30%
+    ),
+    radial-gradient(circle at bottom left,
+      var(--first) 0%, var(--first) 6%, 
+      var(--bg-fade2) 6%, var(--bg-fade2) 12%, 
+      var(--bg-fade3) 12%, var(--bg-fade3) 18%, 
+      var(--bg-fade4) 18%, var(--bg-fade4) 24%, 
+      var(--bg-fade5) 24%, var(--bg-fade5) 30%,
+      var(--bg-fade6) 30%
+    )
 }
 
 body {
-  color: var(--second);
   background-color: var(--bg);
+  color: var(--second);
 }
 
 a:hover {

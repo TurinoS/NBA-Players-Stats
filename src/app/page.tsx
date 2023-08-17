@@ -1,8 +1,9 @@
+import PlayerSelectorList from "@/components/PlayerSelectorList";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Hello World!</h1>
+    <main>
+      <PlayerSelectorList color1="#730080" color2="#ffb700" />
     </main>
   )
 }
