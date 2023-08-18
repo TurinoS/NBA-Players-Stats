@@ -10,7 +10,7 @@ export default function SelectedPlayersList({
   color2,
 }: PlayersSectionProps) {
   return (
-    <section className="flex flex-col items-center gap-6 p-14">
+    <section className="flex flex-col items-center gap-6 p-14 pb-4">
       <h2 className="px-8 text-2xl font-bold pb-3 border-b-2 border-[var(--second)]">
         Your selected players
       </h2>
