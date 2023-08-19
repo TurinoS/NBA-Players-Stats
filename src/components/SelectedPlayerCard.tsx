@@ -18,7 +18,7 @@ export default function SelectedPlayerCard({
           }}
         >
           <p
-            className="px-1 rounded text-2xl font-bold"
+            className="px-1 rounded text-2xl font-bold flex items-center"
             style={{
               backgroundImage: `linear-gradient(135deg, ${shade(
                 0.5,
