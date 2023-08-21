@@ -1,31 +1,35 @@
 import { shade } from "polished";
+import { teamInfo } from "./teamsColors/TeamsColors";
 
 interface PlayersSectionProps {
-  color1: string;
-  color2: string;
+  colors: string;
+  firstName: string;
+  lastName: string;
 }
 
 export default function PlayerSelectionCard({
-  color1,
-  color2,
+  colors,
+  firstName,
+  lastName
 }: PlayersSectionProps) {
   return (
     <div
       className="p-3 border-2 border-solid border-[var(--bg)] rounded-md cursor-pointer transition duration-350 hover:border-[var(--first)]"
       style={{
-        backgroundImage: `linear-gradient(135deg, ${color1} 50%, ${color2} 50%)`,
+        background: `linear-gradient(135deg, ${
+          teamInfo(colors).colors.colorOne
+        } 50%, ${
+          teamInfo(colors).colors.colorTwo
+        } 50%)`,
       }}
     >
       <p
         className="px-1 rounded text-lg"
         style={{
-          backgroundImage: `linear-gradient(135deg, ${shade(
-            0.5,
-            color1
-          )} 50%, ${shade(0.5, color2)} 50%)`,
+          background: `linear-gradient(135deg, ${shade(0.6, teamInfo(colors).colors.colorOne)} 50%, ${ shade(0.6, teamInfo(colors).colors.colorTwo)} 50%)`,
         }}
       >
-        LeBron James
+        {firstName} {lastName}
       </p>
     </div>
   );

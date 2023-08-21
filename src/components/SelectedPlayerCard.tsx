@@ -12,13 +12,13 @@ export default function SelectedPlayerCard({
   return (
       <div className="flex border-2 border-solid border-[var(--second)] rounded-md">
         <div
-          className="px-16 py-8"
+          className="px-16 py-8 flex items-center"
           style={{
             backgroundImage: `linear-gradient(135deg, ${color1} 50%, ${color2} 50%)`,
           }}
         >
           <p
-            className="px-1 rounded text-2xl font-bold flex items-center"
+            className="px-1 rounded text-2xl font-bold"
             style={{
               backgroundImage: `linear-gradient(135deg, ${shade(
                 0.5,
