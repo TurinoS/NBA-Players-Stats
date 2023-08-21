@@ -1,4 +1,15 @@
-export const teamInfo = (team) => {
+type TeamCode = string
+
+interface TeamColors {
+  colorOne: string;
+  colorTwo: string;
+}
+
+interface TeamInfo {
+  colors: TeamColors;
+}
+
+export const teamInfo = (team: TeamCode): TeamInfo => {
     switch (team) {
       case "ATL":
         return {

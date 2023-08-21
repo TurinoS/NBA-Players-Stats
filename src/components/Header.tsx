@@ -9,7 +9,7 @@ export default function Header() {
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetchData(search);
+    fetchData(search.toLowerCase());
   }
 
   useEffect(() => {
