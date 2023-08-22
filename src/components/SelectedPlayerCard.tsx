@@ -1,6 +1,6 @@
 import { shade } from "polished";
 import { teamInfo } from "./teamsColors/TeamsColors";
-import { useContext } from "react";
+import { ChangeEvent, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 interface PlayersSectionProps {
   colors: string
@@ -17,7 +17,19 @@ export default function SelectedPlayerCard({
   playerId,
   uuid,
 }: PlayersSectionProps) {
-  const { removePlayer } = useContext(AppContext)
+  const { removePlayer, setSeason, season, getAverages } = useContext(AppContext)
+
+  let date = new Date();
+  let year = date.getFullYear() - 1;
+  let NBASeasons = [];
+  for (year; year > 1978; year--) {
+    NBASeasons.push(year);
+  }
+
+  const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSeason(e.target.value)
+    getAverages(playerId.toString(), season, firstName, lastName)
+  }
 
   return (
     <div className="relative flex border-2 border-solid border-[var(--second)] rounded-md">
@@ -53,10 +65,11 @@ export default function SelectedPlayerCard({
         <div className="px-6 py-4">
           <p className="text-lg mb-2">{firstName} {lastName}</p>
           <span className="text-sm">Season: </span>
-          <select name="select" className="text-[var(--bg)]">
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
+          <select onChange={(e) => handleOnChange(e)} defaultValue='Select' name="select" className="text-[var(--second)] bg-[var(--bg)] border rounded hover:text-[var(--first)] font-bold">
+            <option disabled>Select</option>
+            {NBASeasons.map((season) => (
+              <option key={season} value={season}>{season}</option>
+            ))}
           </select>
         </div>
       </div>

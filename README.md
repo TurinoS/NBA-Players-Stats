@@ -6,7 +6,7 @@
 - [x] criar tabela para mostrar médias dos jogadores nas temporadas selecionadas
 - [x] fazer o fetch com a API e linkar no input
 - [x] linkar a api na primeira seção
-- [ ] linkar a api na segunda seção
+- [x] linkar a api na segunda seção
 - [ ] linkar a api na terceira seção
 
 - [ ] fazer gráfico de escolher stats

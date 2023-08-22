@@ -18,7 +18,6 @@ export default function SelectedPlayersList() {
         {selectedPlayers.map((player) => (
           <SelectedPlayerCard key={player.uuid} uuid={player.uuid} playerId={player.playerId} colors={player.colors} firstName={player.first_name} lastName={player.last_name} />
         ))}
-        
       </div>
     </section>
   );
