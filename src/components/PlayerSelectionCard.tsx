@@ -10,6 +10,7 @@ interface PlayersSectionProps {
   firstName: string;
   lastName: string;
   id: number;
+  uuid: string;
 }
 
 export default function PlayerSelectionCard({
@@ -17,12 +18,13 @@ export default function PlayerSelectionCard({
   firstName,
   lastName,
   id,
+  uuid,
 }: PlayersSectionProps) {
 
   const { playerSelect } = useContext(AppContext)
 
   return (
-    <div onClick={() => playerSelect(id, firstName, lastName, colors)}
+    <div onClick={() => playerSelect(id, uuid, firstName, lastName, colors)}
       className="p-3 border-2 border-solid border-[var(--bg)] rounded-md cursor-pointer transition duration-350 hover:border-[var(--first)]"
       style={{
         background: `linear-gradient(135deg, ${

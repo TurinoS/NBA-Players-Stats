@@ -1,27 +1,32 @@
 import { shade } from "polished";
 import { teamInfo } from "./teamsColors/TeamsColors";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
 interface PlayersSectionProps {
   colors: string
   firstName: string
   lastName: string
+  playerId: number
+  uuid: string
 }
 
 export default function SelectedPlayerCard({
   colors,
   firstName,
-  lastName
+  lastName,
+  playerId,
+  uuid,
 }: PlayersSectionProps) {
+  const { removePlayer } = useContext(AppContext)
+
   return (
     <div className="relative flex border-2 border-solid border-[var(--second)] rounded-md">
-    {/* Botão "x" no canto superior direito */}
-    <button
-      className="absolute text-sm top-0 right-0 px-1 text-[var(--second)] border-l-2 border-b-2 border-[var(--second)] border-[var(--second)] rounded-tr-md hover:bg-[var(--third)] hover:text-[var(--bg)] hover:font-bold transition duration-500"
-      onClick={() => {
-        // Lógica para lidar com o clique no botão "x"
-      }}
-    >
-      X
-    </button>
+      <button
+        className="absolute text-sm top-0 right-0 px-1 text-[var(--second)] border-l-2 border-b-2 border-[var(--second)] border-[var(--second)] rounded-tr-md hover:bg-[var(--third)] hover:text-[var(--bg)] hover:font-bold transition duration-500"
+        onClick={() => removePlayer(uuid)}
+      >
+        X
+      </button>
         <div
           className="px-16 py-8 flex items-center"
           style={{

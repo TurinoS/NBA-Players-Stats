@@ -23,6 +23,7 @@ type Player = {
 
 type SelectedPlayer = {
   playerId: number;
+  uuid: string;
   first_name: string;
   last_name: string;
   colors: string;
@@ -40,8 +41,9 @@ type AppContextType = {
   setSearch: (search: string) => void;
   searched: boolean;
   setSearched: (searched: boolean) => void;
-  playerSelect: (playerId: number, first_name: string, last_name: string, colors: string) => void;
+  playerSelect: (playerId: number, uuid: string, first_name: string, last_name: string, colors: string) => void;
   selectedPlayers: SelectedPlayer[];
+  removePlayer: (playerIdToRemove: string) => void;
 };
 
 export const AppContext = createContext<AppContextType>({
@@ -52,8 +54,9 @@ export const AppContext = createContext<AppContextType>({
   setSearch: (search: string) => {},
   searched: false,
   setSearched: (searched: boolean) => {},
-  playerSelect: (playerId: number, first_name: string, last_name: string, colors: string) => {},
+  playerSelect: (playerId: number, uuid: string, first_name: string, last_name: string, colors: string) => {},
   selectedPlayers: [],
+  removePlayer: (playerIdToRemove: string) => {},
 });
 
 export function AppcontextProvider({ children }: { children: ReactNode }) {
@@ -76,10 +79,11 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    const playerSelect = (playerId: number, first_name: string, last_name: string, colors: string) => {
+    const playerSelect = ( playerId: number, uuid: string, first_name: string, last_name: string, colors: string) => {
       setSelectedPlayers([... selectedPlayers, 
         {
           playerId: playerId,
+          uuid: uuid,
           first_name: first_name,
           last_name: last_name,
           colors: colors,
@@ -90,6 +94,12 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
 
     //--------------selected players section--------------
 
+    const removePlayer = (playerIdToRemove: string) => {
+      const updatedSelectedPlayers = selectedPlayers.filter(player => player.uuid !== playerIdToRemove);
+      setSelectedPlayers(updatedSelectedPlayers);
+      console.log(selectedPlayers)
+    };
+
     const getAverages = async (playerId: string, year: string) => {
       const res = await fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${year}&player_ids[]=${playerId}`);
       const jsonData = await res.json();
@@ -97,12 +107,8 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
       console.log(selectedPlayers)
     }
 
-    useEffect(() => {
-
-    })
-
   return (
-    <AppContext.Provider value={{ fetchData, getAverages, playersData, search, setSearch, searched, setSearched, playerSelect, selectedPlayers }}>
+    <AppContext.Provider value={{ fetchData, getAverages, playersData, search, setSearch, searched, setSearched, playerSelect, selectedPlayers, removePlayer }}>
       {children}
     </AppContext.Provider>
   );
