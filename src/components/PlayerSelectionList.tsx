@@ -4,15 +4,7 @@ import { useContext } from "react";
 import PlayerSelectionCard from "./PlayerSelectionCard";
 import { AppContext } from "@/context/AppContext";
 
-interface PlayersSectionProps {
-  color1: string;
-  color2: string;
-}
-
-export default function PlayerSelectionList({
-  color1,
-  color2,
-}: PlayersSectionProps) {
+export default function PlayerSelectionList() {
   const {searched, playersData, setSearched, setSearch} = useContext(AppContext)
 
   return (
@@ -22,7 +14,7 @@ export default function PlayerSelectionList({
       </h2>
       <div className="flex flex-wrap justify-center gap-2">
         {searched ? playersData.map((player) => (
-          <PlayerSelectionCard key={player.id} firstName={player.first_name} lastName={player.last_name} colors={player.team.abbreviation} />
+          <PlayerSelectionCard key={player.id} id={player.id} firstName={player.first_name} lastName={player.last_name} colors={player.team.abbreviation} />
         )) : null}
       </div>
       <div onClick={() => {setSearched(false); setSearch('')}} className="p-3 border-2 border-solid border-[var(--second)] rounded-md cursor-pointer transition duration-350 hover:border-[var(--third)] hover:text-[var(--third)]">

@@ -21,28 +21,50 @@ type Player = {
   };
 };
 
+type SelectedPlayer = {
+  playerId: number;
+  first_name: string;
+  last_name: string;
+  colors: string;
+}
+
+type PlayerStats = {
+
+}
+
 type AppContextType = {
   fetchData: (search: string) => void;
+  getAverages: (playerId: string, year: string) => void;
   playersData: Player[];
   search: string;
   setSearch: (search: string) => void;
   searched: boolean;
   setSearched: (searched: boolean) => void;
+  playerSelect: (playerId: number, first_name: string, last_name: string, colors: string) => void;
+  selectedPlayers: SelectedPlayer[];
 };
 
 export const AppContext = createContext<AppContextType>({
   fetchData: (search: string) => {},
+  getAverages: (playerId: string, year: string) => {},
   playersData: [],
   search: '',
   setSearch: (search: string) => {},
   searched: false,
   setSearched: (searched: boolean) => {},
+  playerSelect: (playerId: number, first_name: string, last_name: string, colors: string) => {},
+  selectedPlayers: [],
 });
 
 export function AppcontextProvider({ children }: { children: ReactNode }) {
+
+  //--------------players selection section--------------
+
   const [playersData, setPlayersData] = useState<Player[]>([]);
-  const [search, setSearch] = useState('')
-  const [searched, setSearched] = useState(false)
+  const [search, setSearch] = useState('');
+  const [searched, setSearched] = useState(false);
+  const [selectedPlayers, setSelectedPlayers] = useState<SelectedPlayer[]>([]);
+  const [selectedPlayersData, setSelectedPlayersData] = useState<SelectedPlayer[]>([]);
 
     const fetchData = async (search: string) => {
       setPlayersData([])
@@ -52,12 +74,35 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
         setPlayersData(jsonData.data);
         setSearched(true)
       }
-      console.log(playersData);
-      console.log(searched);
     };
 
+    const playerSelect = (playerId: number, first_name: string, last_name: string, colors: string) => {
+      setSelectedPlayers([... selectedPlayers, 
+        {
+          playerId: playerId,
+          first_name: first_name,
+          last_name: last_name,
+          colors: colors,
+        },
+      ]);
+      console.log(selectedPlayers)
+    };
+
+    //--------------selected players section--------------
+
+    const getAverages = async (playerId: string, year: string) => {
+      const res = await fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${year}&player_ids[]=${playerId}`);
+      const jsonData = await res.json();
+      setSelectedPlayers([...selectedPlayers, jsonData])
+      console.log(selectedPlayers)
+    }
+
+    useEffect(() => {
+
+    })
+
   return (
-    <AppContext.Provider value={{ fetchData, playersData, search, setSearch, searched, setSearched }}>
+    <AppContext.Provider value={{ fetchData, getAverages, playersData, search, setSearch, searched, setSearched, playerSelect, selectedPlayers }}>
       {children}
     </AppContext.Provider>
   );

@@ -2,14 +2,14 @@
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import PlayerSelectorList from "@/components/PlayerSelectionList";
+import PlayerSelectionList from "@/components/PlayerSelectionList";
 import PlayersStats from "@/components/PlayersStats";
 import SelectedPlayersList from "@/components/SelectedPlayersList";
 import { AppContext } from "@/context/AppContext";
 import { useContext } from "react";
 
 export default function Home() {
-  const {searched, playersData} = useContext(AppContext)
+  const {searched, playersData, selectedPlayers} = useContext(AppContext)
 
   const hasData = searched && Array.isArray(playersData) && playersData.length > 0;
 
@@ -17,9 +17,10 @@ export default function Home() {
     <>
       <Header />
       <main>
-        {hasData ? <PlayerSelectorList color1="#730080" color2="#ffb700" /> : null}
+        {hasData ? <PlayerSelectionList /> : null}
         
-        <SelectedPlayersList color1="#730080" color2="#ffb700" />
+        {selectedPlayers.length > 0 ? <SelectedPlayersList /> : null}
+        
         <PlayersStats />
       </main>
       <Footer />

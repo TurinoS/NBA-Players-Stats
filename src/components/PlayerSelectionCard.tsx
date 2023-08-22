@@ -1,19 +1,28 @@
+'use client'
+
 import { shade } from "polished";
 import { teamInfo } from "./teamsColors/TeamsColors";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
 
 interface PlayersSectionProps {
   colors: string;
   firstName: string;
   lastName: string;
+  id: number;
 }
 
 export default function PlayerSelectionCard({
   colors,
   firstName,
-  lastName
+  lastName,
+  id,
 }: PlayersSectionProps) {
+
+  const { playerSelect } = useContext(AppContext)
+
   return (
-    <div
+    <div onClick={() => playerSelect(id, firstName, lastName, colors)}
       className="p-3 border-2 border-solid border-[var(--bg)] rounded-md cursor-pointer transition duration-350 hover:border-[var(--first)]"
       style={{
         background: `linear-gradient(135deg, ${
