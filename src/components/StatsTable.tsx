@@ -46,40 +46,40 @@ export default function StatsTable() {
         </tr>
       </thead>
       <tbody className="text-center">
-        {selectedPlayersData.map((player, index) => (
-          <tr key={index} className="bg-[var(--bg)] even:bg-[var(--first)]">
+        {selectedPlayersData.map((player) => (
+          <tr key={player.uuid} className="bg-[var(--bg)] even:bg-[var(--first)]">
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
               {player.firstName} {player.lastName}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {player.season}
+              {player.season ? player.season : 'Unavailable'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-            {player.min != '0' ? player.min : 0}
+            {player.min ? player.min : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {player.games_played}
+              {player.games_played > 0 ? player.games_played : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {player.pts > 0 ? player.pts : 0}
+              {player.pts > 0 ? player.pts : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {player.ast > 0 ? player.ast : 0}
+              {player.ast > 0 ? player.ast : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {(player.fg3_pct * 100).toFixed(1) != '0' ? (player.fg3_pct * 100).toFixed(1) : 0}%
+              {!isNaN(player.fg3_pct) ? `${(player.fg3_pct * 100).toFixed(1)}%` : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {(player.ft_pct * 100).toFixed(1) != '0' ? (player.ft_pct * 100).toFixed(1) : 0}%
+              {!isNaN(player.ft_pct) ? `${(player.ft_pct * 100).toFixed(1)}%` : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {(player.fg_pct * 100).toFixed(1) != '0' ? (player.fg_pct * 100).toFixed(1) : 0}%
+              {!isNaN(player.fg_pct) ? `${(player.ft_pct * 100).toFixed(1)}%` : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {player.blk > 0 ? player.blk : 0}
+              {player.blk > 0 ? player.blk : '-'}
             </td>
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
-              {player.reb > 0 ? player.reb : 0}
+              {player.reb > 0 ? player.reb : '-'}
             </td>
           </tr>
         ))}

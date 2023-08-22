@@ -59,12 +59,12 @@ type PlayerStats = {
   fg3_pct: number;
   ft_pct: number;
   firstName: string,
-  lastName: string
+  lastName: string,
+  uuid: string,
 };
 
 type AppContextType = {
   fetchData: (search: string) => void;
-  getAverages: (playerId: string, year: string, firstName: string, lastName: string) => void;
   playersData: Player[];
   search: string;
   setSearch: (search: string) => void;
@@ -82,11 +82,11 @@ type AppContextType = {
   selectedPlayersData: PlayerStats[];
   season: string;
   setSeason: (season: string) => void;
+  getAverages: (playerId: string, year: string, firstName: string, lastName: string, uuid: string) => void;
 };
 
 export const AppContext = createContext<AppContextType>({
   fetchData: (search: string) => {},
-  getAverages: (playerId: string, year: string, firstName: string, lastName: string) => {},
   playersData: [],
   search: "",
   setSearch: (search: string) => {},
@@ -104,6 +104,7 @@ export const AppContext = createContext<AppContextType>({
   selectedPlayersData: [],
   season: "",
   setSeason: (season: string) => {},
+  getAverages: (playerId: string, year: string, firstName: string, lastName: string, uuid: string) => {},
 });
 
 export function AppcontextProvider({ children }: { children: ReactNode }) {
@@ -149,10 +150,16 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
   //----------------selected players section----------------
 
   const removePlayer = (playerIdToRemove: string) => {
+
     const updatedSelectedPlayers = selectedPlayers.filter(
       (player) => player.uuid !== playerIdToRemove
     );
+    const updatedSelectedPlayersData = selectedPlayersData.filter(
+      (player) => player.uuid !== playerIdToRemove
+    );
+
     setSelectedPlayers(updatedSelectedPlayers);
+    setSelectedPlayersData(updatedSelectedPlayersData);
     console.log(selectedPlayers);
   };
 
@@ -163,7 +170,7 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
   );
   const [season, setSeason] = useState("");
 
-  const getAverages = async (playerId: string, season: string, firstName: string, lastName: string) => {
+  const getAverages = async (playerId: string, season: string, firstName: string, lastName: string, uuid: string) => {
     const res = await fetch(
       `https://www.balldontlie.io/api/v1/season_averages?season=${season}&player_ids[]=${playerId}`
     );
@@ -172,6 +179,7 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
     const updatedData = { ...jsonData.data[0] };
     updatedData.firstName = firstName;
     updatedData.lastName = lastName;
+    updatedData.uuid = uuid;
 
     setSelectedPlayersData([...selectedPlayersData, updatedData]);
     console.log(selectedPlayersData)

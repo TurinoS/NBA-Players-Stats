@@ -28,7 +28,7 @@ export default function SelectedPlayerCard({
 
   const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSeason(e.target.value)
-    getAverages(playerId.toString(), season, firstName, lastName)
+    getAverages(playerId.toString(), season, firstName, lastName, uuid)
   }
 
   return (
