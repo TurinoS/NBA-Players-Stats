@@ -7,25 +7,25 @@ export default function StatsTable() {
   const { selectedPlayersData } = useContext(AppContext);
 
   return (
-    <table className="border-collapse w-full table-fixed break-word">
+    <table className="border-collapse w-full table-fixed break-word md:text-base text-xs">
       <thead>
         <tr className="bg-[var(--second)] text-[var(--bg)]">
-          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-24 py-1 cursor-pointer">
+          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-20 md:w-24 py-1 cursor-pointer">
             Name
           </th>
           <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-14 py-1 cursor-pointer">
             Season
           </th>
-          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-12 py-1 cursor-pointer">
+          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-10 py-1 cursor-pointer">
             Min
           </th>
-          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-10 py-1 cursor-pointer">
+          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-8 py-1 cursor-pointer">
             GP
           </th>
-          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-10 py-1 cursor-pointer">
+          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-8 py-1 cursor-pointer">
             PTS
           </th>
-          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-10 py-1 cursor-pointer">
+          <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-8 py-1 cursor-pointer">
             AST
           </th>
           <th className="lg:table-cell border border-[var(--bg)] border-b-[var(--second)] lg:table-cell w-10 py-1 cursor-pointer">
@@ -46,7 +46,7 @@ export default function StatsTable() {
         </tr>
       </thead>
       <tbody className="text-center">
-        {selectedPlayersData.map((player) => (
+        {selectedPlayersData && selectedPlayersData.map((player) => (
           <tr key={player.uuid} className="bg-[var(--bg)] even:bg-[var(--first)]">
             <td className="lg:table-cell border border-[var(--second)] lg:table-cell w-10 cursor-pointer">
               {player.firstName} {player.lastName}

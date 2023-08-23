@@ -32,7 +32,8 @@ main {
       var(--bg-fade4) 18%, var(--bg-fade4) 24%, 
       var(--bg-fade5) 24%, var(--bg-fade5) 30%,
       var(--bg-fade6) 30%
-    )
+    );
+  min-height: calc(100vh - 177px);
 }
 
 body {

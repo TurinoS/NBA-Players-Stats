@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header className="px-12 py-6 flex justify-between items-center bg-[var(--first)]">
-      <Link href="/" className="font-bold text-3xl">
+      <Link href="/" className="font-bold text-3xl hidden md:block">
         NBA Stats
       </Link>
       <form onSubmit={(e) => handleOnSubmit(e)}>
@@ -37,7 +37,7 @@ export default function Header() {
           Search
         </button>
       </form>
-      <Link href="https://app.balldontlie.io/" className="underline">
+      <Link href="https://app.balldontlie.io/" className="underline hidden md:block">
         BallDontLie API
       </Link>
     </header>

@@ -4,8 +4,6 @@ import {
   ReactNode,
   createContext,
   useState,
-  useEffect,
-  useContext,
 } from "react";
 
 type Player = {
@@ -80,6 +78,7 @@ type AppContextType = {
   selectedPlayers: SelectedPlayer[];
   removePlayer: (playerIdToRemove: string) => void;
   selectedPlayersData: PlayerStats[];
+  setSelectedPlayersData: (selectedPlayersData: PlayerStats[]) => void;
   season: string;
   setSeason: (season: string) => void;
   getAverages: (playerId: string, year: string, firstName: string, lastName: string, uuid: string) => void;
@@ -102,6 +101,7 @@ export const AppContext = createContext<AppContextType>({
   selectedPlayers: [],
   removePlayer: (playerIdToRemove: string) => {},
   selectedPlayersData: [],
+  setSelectedPlayersData: () => {},
   season: "",
   setSeason: (season: string) => {},
   getAverages: (playerId: string, year: string, firstName: string, lastName: string, uuid: string) => {},
@@ -176,7 +176,7 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
     );
     const jsonData = await res.json();
 
-    const updatedData = { ...jsonData.data[0] };
+    const updatedData = await { ...jsonData.data[0] };
     updatedData.firstName = firstName;
     updatedData.lastName = lastName;
     updatedData.uuid = uuid;
@@ -199,6 +199,7 @@ export function AppcontextProvider({ children }: { children: ReactNode }) {
         removePlayer,
         getAverages,
         selectedPlayersData,
+        setSelectedPlayersData,
         season,
         setSeason,
       }}
